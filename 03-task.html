@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        td,
+        th {
+            padding: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="statsTable">
+        <tr>
+            <th>Месяц</th>
+            <th>Отдел 1</th>
+            <th>Отдел 2</th>
+        </tr>
+        <tr>
+            <td>Январь</td>
+            <td>50</td>
+            <td>120</td>
+        </tr>
+        <tr>
+            <td>Февраль</td>
+            <td>60</td>
+            <td>140</td>
+        </tr>
+        <tr>
+            <td>Март</td>
+            <td>125</td>
+            <td>115</td>
+        </tr>
+        <tr>
+            <td>Апрель</td>
+            <td>87</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>Март</td>
+            <td>95</td>
+            <td>80</td>
+        </tr>
+        <tr>
+            <td>Июнь</td>
+            <td>115</td>
+            <td>90</td>
+        </tr>
+        <tr>
+            <td>Июль</td>
+            <td>125</td>
+            <td>100</td>
+        </tr>
+    </table>
+
+    <div id="result"></div>
+
+    <script>
+        /*
+        Задание:
+        Добавьте строку "Итого" для таблицы statsTable. Напишите сценарий, которым выведите во вторую ячейку этой строки сумму всех числовых значений второй колонки.
+        Выведите в третью ячейку этой строки сумму всех числовых значений из третьей колонки таблицы.
+        В div с id result выведите сообщение "Отдел 1 сделал больше продаж" или "Отдел 2 сделал больше продаж" на основе раннее вычисленных значений в строке "Итого".
+        Используйте любые методы, которые были рассмотрены на в прошлых уроках.
+        */
+
+        const table = document.getElementById('statsTable');
+        const rows = table.getElementsByTagName('tr');
+        let dept1Sum = 0;
+        let dept2Sum = 0;
+        for (let i = 1; i < rows.length - 1; i++) {
+            const dept1Value = parseInt(rows[i].cells[1].textContent);
+            const dept2Value = parseInt(rows[i].cells[2].textContent);
+            dept1Sum += dept1Value;
+            dept2Sum += dept2Value;
+        }
+        document.getElementById('dept1Total').textContent = dept1Sum;
+        document.getElementById('dept2Total').textContent = dept2Sum;
+        const resultDiv = document.getElementById('result');
+        resultDiv.textContent = dept1Sum > dept2Sum
+            ? 'Department 1 made more sales'
+            : 'Department 2 made more sales';
+    </script>
+</body>
+
+</html>
